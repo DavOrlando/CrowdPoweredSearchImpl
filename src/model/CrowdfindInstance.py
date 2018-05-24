@@ -16,12 +16,13 @@ class CrowdfindInstance(object):
         '''
         self._items =items
         self._prop2NumValues ={}
-        for prop in items._properties:
-            self._prop2NumValues[prop] = 0
+        if len(items) != 0:
+            for prop in list(items)[0]._properties:
+                self._prop2NumValues[prop] = 0
         self._outputCondition = outputCondition
         
         
     
     def verify(self):
-        return self._outputCondition.verify();
+        return self._outputCondition.verify(self._prop2NumValues);
             

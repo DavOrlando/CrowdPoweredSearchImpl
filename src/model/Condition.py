@@ -14,12 +14,8 @@ class Condition(object):
         self._property = property
         self._numberRequested = numberRequested
         
-    def verify(self,items):
-        cont = 0
-        for item in items:
-            if(item._valutations[self._property] ==1):
-                cont+=1
-            if(cont>=self._numberRequested):
-                return True
-        return False 
+    def verify(self,prop2NumValues):
+        if(len(prop2NumValues) ==0):
+            return False;
+        return prop2NumValues[self._property] >=self._numberRequested
         

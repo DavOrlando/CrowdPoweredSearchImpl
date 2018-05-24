@@ -16,10 +16,10 @@ class AndOutputCondition(object):
         '''
         self._conditions = conditions
         
-    def verify(self,items):
+    def verify(self,prop2NumValues):
         cond = True
         for condition in self._conditions:
-            cond = condition.verify(items) and cond
+            cond = condition.verify(prop2NumValues) and cond
             if (cond == False):
                 return cond
         return cond
