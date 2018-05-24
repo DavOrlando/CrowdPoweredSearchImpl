@@ -8,15 +8,9 @@ from model.Item import Item
 from model.Condition import Condition
 from model.OrOutputCondition import OrOutputCondition
 from model.AndOutputCondition import AndOutputCondition
-from model.CrowdfindInstance import CrowdfindInstance
 
-propGatto = "propGatto"
-itemOne = "1"
-properties = {propGatto};
-item1 = Item(itemOne, properties)
-simpleCondition = Condition(propGatto, 0)
-setWithOneItem = {item1}
-crowdfindInstace = CrowdfindInstance(setWithOneItem,simpleCondition)
+simpleCondition = Condition("gatto", 0)
+fConGattoZero = {"gatto":0}
 
 class Test(unittest.TestCase):
 
@@ -27,7 +21,7 @@ class Test(unittest.TestCase):
         pass
     
     def testVerifySimpleCondition_True(self):
-        self.assertTrue(simpleCondition.verify(crowdfindInstace._prop2NumValues))
+        self.assertTrue(simpleCondition.verify(fConGattoZero))
         
          
     def testVerifySimpleCondition_False(self):
@@ -35,15 +29,15 @@ class Test(unittest.TestCase):
      
     def testVerifyAndOutputCondition_True(self):
         outputCond = AndOutputCondition({simpleCondition, simpleCondition})
-        self.assertTrue(outputCond.verify(crowdfindInstace._prop2NumValues))
+        self.assertTrue(outputCond.verify(fConGattoZero))
   
     def testVerifyAndOutputCondition_False(self):
-        outputCond = AndOutputCondition({simpleCondition, Condition(propGatto, 5)})
-        self.assertFalse(outputCond.verify(crowdfindInstace._prop2NumValues))
+        outputCond = AndOutputCondition({simpleCondition, Condition("gatto", 5)})
+        self.assertFalse(outputCond.verify(fConGattoZero))
      
     def testVerifyOrOutputCondition_True(self):
-        outputCond = OrOutputCondition({simpleCondition, Condition(propGatto, 5)})
-        self.assertTrue(outputCond.verify(crowdfindInstace._prop2NumValues))
+        outputCond = OrOutputCondition({simpleCondition, Condition("gatto", 5)})
+        self.assertTrue(outputCond.verify(fConGattoZero))
       
     def testVerifyOrOutputCondition_False(self):
         outputCond = OrOutputCondition({})

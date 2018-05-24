@@ -15,7 +15,10 @@ class Condition(object):
         self._numberRequested = numberRequested
         
     def verify(self,prop2NumValues):
-        if(len(prop2NumValues) ==0):
+        if(len(prop2NumValues) == 0):
             return False;
-        return prop2NumValues[self._property] >=self._numberRequested
-        
+        try:
+            return prop2NumValues[self._property] >=self._numberRequested
+        except Exception:
+            print("An error occurred during condition verify!")
+            return False;
