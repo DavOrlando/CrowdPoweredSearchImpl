@@ -30,4 +30,4 @@ class Item(object):
         self._valutations[property] = value; 
         
     def __str__(self, *args, **kwargs):
-        return str(self._id);
+        return str("[id: "+self._id+", properties: "+str(self._properties)+"]");
