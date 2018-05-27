@@ -5,7 +5,13 @@ Created on 25 mag 2018
 '''
 
 import csv
-import crowdPoweredSearchUtils.ItemsManager as manager
+import miscellaneous.ItemsManager as manager
+from model.CrowdfindInstance import CrowdfindInstance
+from model.Condition import Condition
+from deterministicAlgorithm.SequentialAlgorithm import SequentialAlgorithm
+from deterministicAlgorithm.OptCostMaxParallelismAlgorithm import OptCostMaxParallelismAlgorithm
+from deterministicAlgorithm.AlfaMultApproxAlgorithm import AlfaMultApproxAlgorithm
+from deterministicAlgorithm.AlfaAddApproxAlgorithm import AlfaAddApproxAlgorithm
 
 if __name__ == '__main__':
     m = manager.ItemsManager.getInstance()
@@ -15,8 +21,4 @@ if __name__ == '__main__':
             m.addItem(row['id'],row['properties'],row['valuations'])
     
     items = m.getItems()
-    for i in items:
-        print(str(i))
-    
-    '''Esempio'''  
-    print("item 5:" + m.getItemRealProperty(5,"cat"))
+    AlfaAddApproxAlgorithm().resolve(CrowdfindInstance(items, Condition("cat",10)),2)

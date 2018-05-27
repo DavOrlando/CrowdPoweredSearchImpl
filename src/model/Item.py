@@ -21,10 +21,9 @@ class Item(object):
         self._valutations = {}
         for prop in self._properties:
             self._valutations[prop] = -1;
+        self._isEvaluated=0
      
-    
-    def evaluated(self,property):
-        return self._valutations[property]!=-1;   
+
     
     def setValueProp(self,property,value):
         self._valutations[property] = value; 

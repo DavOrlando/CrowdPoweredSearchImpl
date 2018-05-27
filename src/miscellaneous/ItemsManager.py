@@ -21,7 +21,7 @@ class ItemsManager(object):
     def addItem(self,itemId,itemProperties,valuations):
         propertyName2value = {}
         for keyAndValue in itemProperties.split("&"):
-            propertyName2value[keyAndValue.split(":")[0]] = keyAndValue.split(":")[1]
+            propertyName2value[keyAndValue.split(":")[0]] = int(keyAndValue.split(":")[1])
         newItem = i.Item(itemId,propertyName2value.keys())
         ItemsManager._items.append(newItem)
         ItemsManager._itemId2realProperties[itemId] = propertyName2value
